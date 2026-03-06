@@ -1,5 +1,1 @@
-data
-.venv
-.idea
-__pycache__
-*.pyc
+ABCDEFG
