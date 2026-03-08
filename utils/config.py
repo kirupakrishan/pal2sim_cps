@@ -6,7 +6,7 @@ from typing import List, Dict
 @dataclass
 class DataConfig:
     dataset_file: str = "cps_data_multi_label.pkl"
-    download_url: str = "https://owncloud.fraunhofer.de/index.php/s/pnUwR8QgtVyIk1Q/download"
+    download_url: str = "REPLACE_HERE"
     sensor_cols: List[str] = field(default_factory=lambda: [
         "Acc.x", "Acc.y", "Acc.z", "Gyro.x", "Gyro.y", "Gyro.z", "Baro.x"
     ])
