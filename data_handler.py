@@ -160,10 +160,11 @@ class DataHandler:
 
 
 
-        # --- CREATE DATASETS ---
-        train_x, train_y = self._get_challenge_data_numpy(train_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
-        val_x, val_y = self._get_challenge_data_numpy(validation_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
-        test_x, test_y = self._get_challenge_data_numpy(test_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
+        # # --- CREATE DATASETS ---
+        # train_x, train_y = self._get_challenge_data_numpy(train_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
+        # val_x, val_y = self._get_challenge_data_numpy(validation_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
+        # test_x, test_y = self._get_challenge_data_numpy(test_df, self.config.prep.seq_len, self.config.data.sensor_cols, final_target_cols)
 
-        return (train_x, train_y), (val_x, val_y), (test_x, test_y), final_target_cols
+        # return (train_x, train_y), (val_x, val_y), (test_x, test_y), final_target_cols
 
+        return train_df , validation_df, test_df, final_target_cols
