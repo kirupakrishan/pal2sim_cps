@@ -1,5 +1,5 @@
 from pathlib import Path
-
+import numpy as np
 import pandas as pd
 import requests
 import tqdm
@@ -38,8 +38,8 @@ class DataHandler:
 
     def _get_challenge_data_numpy(self, df, seq_len, sensor_cols, label_cols):
 
-        data_values = df[sensor_cols].values
-        label_values = df[label_cols].values
+        data_values = df[sensor_cols].values.astype(np.float16)
+        label_values = df[label_cols].values.astype(np.int8)
 
         X_view = sliding_window_view(data_values, window_shape=seq_len, axis=0)
 
@@ -124,7 +124,7 @@ class DataHandler:
 
     def get_data_loaders(self):
         print("Starting data preparation...", flush=True)
-        #df_final = self.load_data_set()
+        # df_final = self._load_data_set()
 
         test_mask = self.data['experiment'] == self.config.data.test_experiment_id
         validation_mask = self.data['experiment'] == self.config.data.validation_experiment_id
@@ -149,7 +149,7 @@ class DataHandler:
 
 
         self.config.IN_CHANNELS = len(self.config.data.sensor_cols)
-        #final_target_cols = self.config.data.label_cols
+        # final_target_cols = self.config.data.label_cols
 
 
         # --- SCALING ---
