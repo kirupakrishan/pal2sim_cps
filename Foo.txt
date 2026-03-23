@@ -3,3 +3,13 @@ Utils Functions :
     * plot_per_class_confusion
     * calculate_mcc_multilabel
 
+ The data form 
+   timestep :    {
+             acc_x:{[1,..........,160]},
+             acc_y:{[1,..........,160]},
+             acc_z:{[1,..........,160]},
+             gyro_x:{[1,..........,160]},
+             gyro_y:{[1,..........,160]},
+             gyro_z:{[1,..........,160]},
+             baro_x:{[1,..........,160]}
+                                        }
