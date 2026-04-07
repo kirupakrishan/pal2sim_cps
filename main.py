@@ -7,6 +7,8 @@ from data_handler import DataHandler
 from classificators.dummy_classifier import DummyClassifier
 from classificators.random_forest_classifier import RandomForestClassifierSK
 from utils.utils import calculate_mcc_multilabel, plot_per_class_confusion
+from classificators.BiLSTM import BiLSTMClassifier
+
 
 if __name__ == '__main__':
 
@@ -49,18 +51,36 @@ if __name__ == '__main__':
             #model = RandomForestClassifierSK(target_vals)
             ### INSERT YOUR MODEL HERE ###
             # model = MyAwesomeModel(...)
+            model = BiLSTMClassifier(
+                    target_vals=target_vals,
+                    hidden_size=128,
+                    num_layers=2,
+                    dropout=0.3,
+                    lr=1e-3,
+                    batch_size=64,
+                    epochs=20,
+                    threshold=0.5,
+                    seed=42
+                )
 
             # Here, we use the validation set to follow good machine learning practice, which is particularly relevant for evaluation during training.
             # However, the validation data can also be incorporated directly into the model training if necessary.
             print("Training model...")
+            model.train(train, val)
             # Note: Any kind of preprocessing, data augmentation or feature engineering should be done within the model.train() function
             # so it's capsuled within the model class (see RandomForestClassifierSK for an example)
             # model.train(train, val)
             print("Evaluating model...")
+            predicted_y = model.predict(test[0])
             # predicted_y = model.predict(test[0])
 
             # optional, for more insight, plot the per-class-confusion-matrix for the test set
             # plot_per_class_confusion(test[1], predicted_y, target_vals)
+            plot_per_class_confusion(test[1], predicted_y, target_vals)
+
+            test_mcc = calculate_mcc_multilabel(predicted_y, test[1])
+            test_mccs.append(test_mcc)
+            print(f"Fold {fold} MCC: {test_mcc:.4f}")
 
             # Note: The MCC might be negative for a fold since its a correlation coefficient -> Range -1 to +1
             # +1 indicates perfect correlation, 0 indicates no correlation, and -1 indicates perfect inverse correlation.
