@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
-from pal2sim_cps.feature_engg import FeatureEngineer
+from feature_engg import FeatureEngineer
 
 
 class TimeSeriesDataset(Dataset):

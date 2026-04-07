@@ -34,7 +34,7 @@ class FeatureEngineer:
 
             chunks.append(chunk_reduced.cpu().numpy())
 
-            print(f"Raw chunk {start}:{end} -> {tuple(chunk_reduced.shape)}")
+            # print(f"Raw chunk {start}:{end} -> {tuple(chunk_reduced.shape)}")
 
             del chunk, chunk_reduced
             if torch.cuda.is_available():
@@ -63,7 +63,7 @@ class FeatureEngineer:
 
             fft_chunks.append(chunk_fft_reduced.cpu().numpy())
 
-            print(f"FFT chunk {start}:{end} -> {tuple(chunk_fft_reduced.shape)}")
+            # print(f"FFT chunk {start}:{end} -> {tuple(chunk_fft_reduced.shape)}")
 
             del chunk, chunk_fft, chunk_fft_reduced
             if torch.cuda.is_available():
@@ -133,7 +133,7 @@ class FeatureEngineer:
 
             entropy_chunks.append(entropy.cpu().numpy())
 
-            print(f"Entropy chunk {start}:{end} -> {tuple(entropy.shape)}")
+            # print(f"Entropy chunk {start}:{end} -> {tuple(entropy.shape)}")
 
             del chunk, chunk_reshaped, x_min, x_max, x_range, valid, scaled, bin_idx, counts, probs, entropy
             if torch.cuda.is_available():
